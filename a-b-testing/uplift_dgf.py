@@ -1,3 +1,5 @@
+from itertools import product
+
 import numpy as np
 
 
@@ -20,3 +22,8 @@ def get_conversions_array(daily_visitors, daily_conversions):
     converted_array = np.ones(n_converted)
     non_converted_array = np.zeros(n_visitors - n_converted)
     return np.concatenate([converted_array, non_converted_array])
+
+
+def grid_configs(dictionary):
+    for combination in product(*dictionary.values()):
+        yield dict(zip(dictionary.keys(), combination))
